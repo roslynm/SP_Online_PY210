@@ -103,10 +103,10 @@ class IO():
 
 # ---------------- Processing Classes ------------------ #
 
-class Processing():
+class DonorClass():
 
-    @staticmethod
-    def create_report(donor_all):
+    @classmethod
+    def create_report(self, donor_all):
         """ Create a report of donors to show user.
                     :param: donor_all (list of donor objects)
                     :return: nothing
@@ -126,8 +126,8 @@ class Processing():
         IO.print_to_user(string4)
         return sorted_donors
 
-    @staticmethod
-    def thank_you_note(donor_all):
+    @classmethod
+    def thank_you_note(self, donor_all):
         """ User will be prompted for a Full Name.
                 -If the user type list show them a list of the donor names and re-prompt.
                 -If the user types a name not in the list, it will be added to data structure and used
@@ -142,7 +142,7 @@ class Processing():
         existing = False
 
         while user_input == "Report":
-            Processing.create_report(donor_all)
+            DonorClass.create_report(donor_all)
             user_input = IO.person_input()
         donation_amt = IO.donation_input()
         first, last = user_input.split()
@@ -163,8 +163,8 @@ class Processing():
         IO.print_to_user(string2)
         return donor_all
 
-    @staticmethod
-    def send_all_thank_you(donor_all):
+    @classmethod
+    def send_all_thank_you(self, donor_all):
         """ Function will print a .txt file thank you note for each donor in list
                 :param: donor_all (list of objects)
                 :return: donor_all
@@ -189,9 +189,9 @@ donor_list = [donor1, donor2, donor3, donor4]
 user_input = ""
 
 dict = {
-    1: Processing.thank_you_note,
-    2: Processing.create_report,
-    3: Processing.send_all_thank_you
+    1: DonorClass.thank_you_note,
+    2: DonorClass.create_report,
+    3: DonorClass.send_all_thank_you
     }
 
 if __name__ == '__main__':

@@ -77,7 +77,7 @@ class TestListSum(unittest.TestCase):
     def test_thank_you_note(self, mock_inputs):
         """ Mock inputs used, testing to see if new donor and their donation is added to the dict
             """
-        test_ty_list = mail.Processing.thank_you_note(donor_list)
+        test_ty_list = mail.DonorClass.thank_you_note(donor_list)
         assert str(test_ty_list[4]) == str(donor_list_new[4])
         return
 
@@ -86,14 +86,14 @@ class TestListSum(unittest.TestCase):
         """ Mock inputs used, testing to see if existing donor and their new donation is added to the dict
             """
 
-        test_ty_list = mail.Processing.thank_you_note(donor_list)
+        test_ty_list = mail.DonorClass.thank_you_note(donor_list)
         print(test_ty_list[0])
         assert str(test_ty_list[0]) == ty_test2_assertion
         return
 
     @staticmethod
     def test_sorted_list():
-        result = mail.Processing.create_report(donor_list)
+        result = mail.DonorClass.create_report(donor_list)
         assert str(result[0]) == "[300.0, 'William Gates', 3, 100.0]"
         assert str(result[1]) == "[250.0, 'Jeff Bezos', 5, 50.0]"
         assert str(result[2]) == "[200.0, 'Paul Allen', 1, 200.0]"
@@ -102,7 +102,7 @@ class TestListSum(unittest.TestCase):
 
     @staticmethod
     def test_file_creation():
-        mail.Processing.send_all_thank_you(donor_list)
+        mail.DonorClass.send_all_thank_you(donor_list)
         current = os.getcwd()
         list_files = os.listdir(current)
         filename1 = "Paul_Allen.txt"
